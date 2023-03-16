@@ -71,10 +71,75 @@ function App() {
     
   };
 
-  const findUserID = async () => {
+  const findUserIdAsync = async (userName: string): Promise<number> => {
+    const response = await fetch("http://localhost:5198/api/UserData");
+    const data = await response.json();
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].userName === userName) {
+        return data[i].id; 
+      }
+    }
+    return -1; 
+  
 
-      
   }
+  
+
+  const findUserId = async (userName: string) => {
+    
+    
+
+    return 1; 
+
+  }
+
+  
+    /*
+    SWAGGER POST: 
+
+    ID: http://localhost:5198/api/UserData/{id}
+    BODY: 
+    {
+      "id": 1,
+      "userName": "New Name",
+      "storyProgress": "143",
+      "strength": 5,
+      "wisdom": 5,
+      "coins": 5
+    }
+    
+    */
+  const PUTUserData = async (userData: UserData) => {
+
+    console.log(`ATTEMTING TO POST USER DATA FOR ${userData.userName}`); 
+
+    const REPLACE_WITH_USERID = await findUserIdAsync (userData.userName); 
+    console.log(`User ${userData.userName} had id ${REPLACE_WITH_USERID}`)
+
+    const response = await fetch(`http://localhost:5198/api/UserData/1`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: 1, 
+          userName: "New Erik", 
+          storyProgress: "12",
+          strength: 5,
+          wisdom: 5,
+          coins: 5
+
+        })
+      });
+      
+
+      // const data = await response.json();
+
+      // console.log(data); // do something with the response data
+
+  }
+
+
 
   // === DUMMY VARIABLES === 
 
@@ -91,11 +156,11 @@ function App() {
   return (
     <div>
       
-
+      <button onClick={DUMMY_FUNCTION}>SEND TO DATABASE</button>
       
       {hasLoggedIn ? (
         <Game 
-          putFunction={DUMMY_FUNCTION} 
+          putFunction={PUTUserData} 
           deleteFunction={DUMMY_FUNCTION} 
           currentUser={currentUser!}  
         />

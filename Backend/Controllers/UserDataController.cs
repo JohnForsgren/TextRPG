@@ -52,10 +52,9 @@ namespace Backend.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUserData(int id, UserData userData)
-        {
-            if (id != userData.Id)
-            {
-                return BadRequest();
+        {   
+            if (id != userData.Id){
+                BadRequest(); 
             }
 
             _context.Entry(userData).State = EntityState.Modified;

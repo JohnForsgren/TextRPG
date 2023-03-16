@@ -10,10 +10,6 @@ export const Game = (props: GameProps) => {
     return (
       <article> 
 
-        {/* STRUCTURE THE GAME FROM THE LAYOUT, THEN ASK AI   */}
-
-        
-
         <p>=== STORY BOARD ===</p>
 
         <p> INSERT STORY HERE FROM A MODEL CLASS (it is not important how the class works since this is not rleated to fullstack)</p>
