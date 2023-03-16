@@ -21,6 +21,14 @@ function App() {
 
   const [hasLoggedIn, setHasLoggedIn] = useState(false);
 
+
+  const handleButtonClick = (newUserData: UserData) => {
+    setCurrentUser(prevUser => {
+      return { ...prevUser, ...newUserData };
+    });
+  };
+
+
   // ==== HTTP REQUESTS === 
 
 
@@ -71,7 +79,8 @@ function App() {
     
   };
 
-  const findUserIdAsync = async (userName: string): Promise<number> => {
+
+  const findUserIdAsync = async (userName: string): Promise<number> => { // Finds the ID of the user.  
     const response = await fetch("http://localhost:5198/api/UserData");
     const data = await response.json();
     for (let i = 0; i < data.length; i++) {
@@ -80,19 +89,7 @@ function App() {
       }
     }
     return -1; 
-  
-
   }
-  
-
-  const findUserId = async (userName: string) => {
-    
-    
-
-    return 1; 
-
-  }
-
   
     /*
     SWAGGER POST: 
@@ -110,31 +107,28 @@ function App() {
     
     */
   const PUTUserData = async (userData: UserData) => {
-
     console.log(`ATTEMTING TO POST USER DATA FOR ${userData.userName}`); 
+    const USER_ID = await findUserIdAsync (userData.userName); 
+    console.log(`User ${userData.userName} had id ${USER_ID}`)
 
-    const REPLACE_WITH_USERID = await findUserIdAsync (userData.userName); 
-    console.log(`User ${userData.userName} had id ${REPLACE_WITH_USERID}`)
-
-    const response = await fetch(`http://localhost:5198/api/UserData/1`, {
+    const response = await fetch(`http://localhost:5198/api/UserData/${USER_ID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          id: 1, 
-          userName: "New Erik", 
-          storyProgress: "12",
-          strength: 5,
-          wisdom: 5,
-          coins: 5
-
+          id: USER_ID, 
+          userName: userData.userName, 
+          storyProgress: userData.storyProgress,
+          strength: userData.strength,
+          wisdom: userData.wisdom,
+          coins: userData.coins
         })
       });
-      
 
-      // const data = await response.json();
+      console.log(response); 
 
+      // const data = await response.json(); // NOTE: This will give an ERROR (even though nothing is wrong) if the PUT succeeds; This is because PUT resturns nothing, which makes this try to access this. 
       // console.log(data); // do something with the response data
 
   }
@@ -157,12 +151,19 @@ function App() {
     <div>
       
       <button onClick={DUMMY_FUNCTION}>SEND TO DATABASE</button>
+
+      <p>=== LIST OF CURRENT USERS === </p>
+      {userData.map(value => // The map is important because if the list is empty, it returns null instead of BREATKING (The code otherwise breaks if trying to access a variable that has not yet loaded from the database)  
+        <p>{value.userName}</p> // NOTE: The key is just used by react to improve performance (and remove a warning message). It has no other function atm. 
+      )}
+
       
       {hasLoggedIn ? (
         <Game 
           putFunction={PUTUserData} 
           deleteFunction={DUMMY_FUNCTION} 
           currentUser={currentUser!}  
+          updateUserData={handleButtonClick}
         />
         ) : (
           <Login postFunction={POSTUserData}  />
@@ -176,10 +177,7 @@ function App() {
 
   //     <Login postFunction={POSTUserData} />
   //     <Game putfunction={DUMMY_FUNCTION} deleteFunction={DUMMY_FUNCTION} currentUser={DUMMY_USER}/>
-  //     {/* <p>=== LIST OF CURRENT USERS === </p>
-      // {userData.map(value => // The map is important because if the list is empty, it returns null instead of BREATKING (The code otherwise breaks if trying to access a variable that has not yet loaded from the database)  
-      //   <p key={value.id}>{value.userName}</p> // NOTE: The key is just used by react to improve performance (and remove a warning message). It has no other function atm. 
-      // )} */}
+  //     
   //   </div>
   // )
 

@@ -7,6 +7,7 @@ export interface GameProps {
     putFunction: Function;  // The functions are only used for the DescisionButton 
     deleteFunction: Function;  
     currentUser : UserData;
+    updateUserData: Function; // Function to update the userdata on the screen. 
 }
 
 export interface DecisionButtonProps {

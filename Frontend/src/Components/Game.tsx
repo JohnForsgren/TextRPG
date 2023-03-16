@@ -29,13 +29,6 @@ export const Game = (props: GameProps) => {
         Story Path: {props.currentUser.storyProgress} <br/>
         </p>
 
-
-
-        
-
-      
-
-
       </article>
     );
   };

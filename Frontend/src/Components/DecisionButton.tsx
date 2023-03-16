@@ -2,16 +2,19 @@ import { DecisionButtonProps } from "./Interfaces";
 
 export const DecisionButton = (props: DecisionButtonProps) => {
 
-
     const onClick = () => {
         console.log("You have now pressed button number: " + props.buttonID);
 
+        // UPDATE THHE PAYER CONTEXT 
+        let user = props.gameProps.currentUser; 
 
-        // TODO: UPDATE THE CURRENT PLAYER OBJECT, then CALL the async method using the player object. 
-        
-        props.gameProps.putFunction(props.gameProps.currentUser); // RUNS the putfunction wit hthe current user. 
+        user.coins = user.coins +5; // Adds 5 coins
+        user.storyProgress = user.storyProgress + props.buttonID; // Adds the buttonID so that the user remember these data. 
 
-        // If you collect 100 gold coins, YOU WIN and you are removed from the database.  
+        props.gameProps.putFunction(user); // Updates the database 
+        props.gameProps.updateUserData(user); // Updates the data on the screen. 
+
+        // TO ADD: Delete the user and reload the page if you collect 100 coins   
 
     }
 
