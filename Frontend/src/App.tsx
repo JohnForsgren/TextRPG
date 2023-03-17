@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Game } from './Components/Game';
 import { UserData } from './Components/Interfaces';
-
 import { Login } from './Components/Login';
-
-
+import './Styles/Style.css';
 
 function App() {
 
@@ -30,9 +28,6 @@ function App() {
 
 
   // ==== HTTP REQUESTS === 
-
-
-
   const foundUserInDatabase = async (username: string): Promise<UserData | undefined> => { 
     const response = await fetch("http://localhost:5198/api/UserData");
     const data = await response.json();
@@ -153,29 +148,13 @@ function App() {
   }
 
 
-
-
-
-  // === DUMMY VARIABLES === 
-
-  const DUMMY_FUNCTION =  () => {
-    console.log("dummyOutput"); 
-  }
-  const DUMMY_USER = {
-    userName: 'TEST USER',
-    storyProgress: '123',
-    strength: 12,
-    wisdom: 3,
-    coins: 112 }; 
-
   return (
-    <div>
+    <div className='app--body'>
 
-      <p>=== LIST OF CURRENT USERS === </p>
+      {/* <p>=== LIST OF CURRENT USERS (Debugging) === </p>
       {userData.map(value => // The map is important because if the list is empty, it returns null instead of BREATKING (The code otherwise breaks if trying to access a variable that has not yet loaded from the database)  
         <p>{value.userName}</p> // NOTE: The key is just used by react to improve performance (and remove a warning message). It has no other function atm. 
-      )}
-
+      )} */}
       
       {hasLoggedIn ? (
         <Game 

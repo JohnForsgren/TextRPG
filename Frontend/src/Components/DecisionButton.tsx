@@ -8,13 +8,13 @@ export const DecisionButton = (props: DecisionButtonProps) => {
 
         let user = props.gameProps.currentUser;  
 
-        user.coins = user.coins +5; // Adds 5 coins
+        user.coins = user.coins + 5; // Adds 5 coins
         user.storyProgress = user.storyProgress + props.buttonID.toString(); // Adds the buttonID so that the user remember these data. 
 
         await props.gameProps.putFunction(user); // Updates the database 
         await props.gameProps.updateUserData(user); // Updates the data on the screen. 
 
-        if (user.coins >= 100){ // If victory condition is achieved. 
+        if (user.coins >= 30){ // If victory condition is achieved. 
             await props.gameProps.deleteFunction(user);
             window.location.reload();
         } 
@@ -26,7 +26,7 @@ export const DecisionButton = (props: DecisionButtonProps) => {
 
     return (
         <div>
-            <button onClick={onClick}>{props.buttonID}</button>
+            <button className="decisionButton" onClick={onClick}>{props.buttonID}</button>
         </div>
     )
 

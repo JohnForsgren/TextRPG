@@ -41,15 +41,14 @@ export const prompts = {
 
 };
 
+/*
+PROBLEM: Current code can't update the UserData. TODO: 
+  * update the "prompts" so that it includes not just the prompt string, but also the changes to the userdata 
 
-// PROBLEM: Current code can't update userdata properly. 
 
-// TALK ABOUT implementation for connecting an o 
+*/
 
-
-// NOT USED -> Functionality that allows for the data to change.  
-
-type StoryData = { // Includes the MODIFICATIONS for the story.  
+type StoryData = { // Includes the MODIFICATIONS for the character stats 
   strength?: number, 
   wisdom?: number,
   coins?: number,
