@@ -10,10 +10,13 @@ export interface GameProps {
     updateUserData: Function; // Function to update the userdata on the screen. 
 }
 
+export interface StoryProps {
+    gameProps: GameProps; 
+}
+
 export interface DecisionButtonProps {
     buttonID: number;
     gameProps: GameProps; // IMPORTANT: The decisionbutton is meant to include everything that the GameProps has, so it includes this. 
-    
 
 }
 
@@ -24,3 +27,4 @@ export type UserData = {
     wisdom: number,
     coins: number,
   };
+

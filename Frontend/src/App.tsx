@@ -55,7 +55,7 @@ function App() {
       }
       let newUser = {
         userName: name, // Assigns the name to the current user.  
-        storyProgress: '',
+        storyProgress: "0",
         strength: 0,
         wisdom: 0,
         coins: 0 }; 
@@ -133,6 +133,27 @@ function App() {
 
   }
 
+  const DELETEUserData = async (userData: UserData) => {
+    console.log(`ATTEMTING TO DELETE USER DATA FOR ${userData.userName}`); 
+    const USER_ID = await findUserIdAsync (userData.userName); 
+    console.log(`User ${userData.userName} had id ${USER_ID}`)
+
+    const response = await fetch(`http://localhost:5198/api/UserData/${USER_ID}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+
+      console.log(response); 
+
+    //   const data = await response.json(); // NOTE: This will give an ERROR (even though nothing is wrong) if the PUT succeeds; This is because PUT resturns nothing, which makes this try to access this. 
+    //   console.log(data); // do something with the response data
+
+  }
+
+
+
 
 
   // === DUMMY VARIABLES === 
@@ -149,8 +170,6 @@ function App() {
 
   return (
     <div>
-      
-      <button onClick={DUMMY_FUNCTION}>SEND TO DATABASE</button>
 
       <p>=== LIST OF CURRENT USERS === </p>
       {userData.map(value => // The map is important because if the list is empty, it returns null instead of BREATKING (The code otherwise breaks if trying to access a variable that has not yet loaded from the database)  
@@ -161,7 +180,7 @@ function App() {
       {hasLoggedIn ? (
         <Game 
           putFunction={PUTUserData} 
-          deleteFunction={DUMMY_FUNCTION} 
+          deleteFunction={DELETEUserData} 
           currentUser={currentUser!}  
           updateUserData={handleButtonClick}
         />
@@ -170,17 +189,6 @@ function App() {
         )}
     </div>
   );
-
-  // return ( 
-
-  //   <div>
-
-  //     <Login postFunction={POSTUserData} />
-  //     <Game putfunction={DUMMY_FUNCTION} deleteFunction={DUMMY_FUNCTION} currentUser={DUMMY_USER}/>
-  //     
-  //   </div>
-  // )
-
 
 }
 

@@ -1,18 +1,15 @@
+
+
 import { DecisionButton } from "./DecisionButton";
 import { GameProps } from "./Interfaces";
-
-
-
-
+import { Story } from "./Story";
 
 
 export const Game = (props: GameProps) => {
     return (
       <article> 
 
-        <p>=== STORY BOARD ===</p>
-
-        <p> INSERT STORY HERE FROM A MODEL CLASS (it is not important how the class works since this is not rleated to fullstack)</p>
+        <Story gameProps={props}/>
 
         <DecisionButton gameProps={props} buttonID={1}/>
         <DecisionButton gameProps={props} buttonID={2}/>
