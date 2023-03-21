@@ -1,0 +1,30 @@
+
+
+
+
+
+=== Note to self: Current project is public (don't put any passwords here :) === 
+
+========================================================================
+=========================== PROJECT OVERVIEW ===========================
+========================================================================
+
+=== BACKEND === 
+
+* Generated mostly with asp code generator - not much has been change. 
+    * CURRENT PROBLEM: DTO is not used, so the database ID must be included in the requests (not good)
+
+=== FRONTEND === 
+
+App.tsx: Main script that contains  
+
+    * All HTTP requests 
+    * The pages: Login and Game. 
+
+
+COMPONENTS: 
+
+    * Login: Contains the login-window. 
+    * Game: Contains the actual game: 
+        * 
+    

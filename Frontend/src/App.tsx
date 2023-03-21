@@ -8,8 +8,9 @@ function App() {
 
 
   // ==== STATES ==== 
-  const [ userData, setUserData ] = useState<UserData[]>([]) // Initializes an empty list of UserData from the database
-  const [ currentUser, setCurrentUser ] = useState<UserData>() // Initializes an empty user 
+  const [ userData, setUserData ] = useState<UserData[]>() // Variable that contains all users from the database. 
+  const [ currentUser, setCurrentUser ] = useState<UserData>() 
+  const [hasLoggedIn, setHasLoggedIn] = useState(false);
 
   useEffect(()  => {
       fetch("http://localhost:5198/api/UserData") // Currently fetches ALL DATA -> This is not best practice, but works for this project. 
@@ -17,7 +18,6 @@ function App() {
         .then(data => setUserData(data)) // Stores in the useState "userData". 
   }, []);
 
-  const [hasLoggedIn, setHasLoggedIn] = useState(false);
 
 
   const handleButtonClick = (newUserData: UserData) => {
