@@ -12,7 +12,7 @@ function App() {
  
 
   // useEffect(()  => {
-  //     fetch("http://localhost:5198/api/UserData") // Currently fetches ALL DATA -> This is not best practice, but works for this project. 
+  //     fetch("https://hackdaybackend.azurewebsites.net/api/UserData") // Currently fetches ALL DATA -> This is not best practice, but works for this project. 
   //       .then(data => data.json()) // Converts to json
   //       .then(data => setUserData(data)) // Stores in the useState "userData". 
   // }, []);
@@ -28,7 +28,7 @@ function App() {
 
   // ==== HTTP REQUESTS === 
   const foundUserInDatabase = async (username: string): Promise<UserData | undefined> => { 
-    const response = await fetch("http://localhost:5198/api/UserData");
+    const response = await fetch("https://hackdaybackend.azurewebsites.net/api/UserData");
     const data = await response.json();
     for (let i = 0; i < data.length; i++) {
       if (data[i].userName === username) {
@@ -55,7 +55,7 @@ function App() {
         coins: 0 }; 
       setCurrentUser(newUser); // Sets the current user so that it can be SENT into the game method. 
 
-      const response = await fetch("http://localhost:5198/api/UserData", 
+      const response = await fetch("https://hackdaybackend.azurewebsites.net/api/UserData", 
       {
         method: "POST",
         headers: {
@@ -75,7 +75,7 @@ function App() {
 
 
   const findUserIdAsync = async (userName: string): Promise<number> => { // Finds the ID of the user.  
-    const response = await fetch("http://localhost:5198/api/UserData");
+    const response = await fetch("https://hackdaybackend.azurewebsites.net/api/UserData");
     const data = await response.json();
     for (let i = 0; i < data.length; i++) {
       if (data[i].userName === userName) {
@@ -88,7 +88,7 @@ function App() {
     /*
     SWAGGER POST: 
 
-    ID: http://localhost:5198/api/UserData/{id}
+    ID: https://hackdaybackend.azurewebsites.net/api/UserData/{id}
     BODY: 
     {
       "id": 1,
@@ -105,7 +105,7 @@ function App() {
     const USER_ID = await findUserIdAsync (userData.userName); 
     console.log(`User ${userData.userName} had id ${USER_ID}`)
 
-    const response = await fetch(`http://localhost:5198/api/UserData/${USER_ID}`, {
+    const response = await fetch(`https://hackdaybackend.azurewebsites.net/api/UserData/${USER_ID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -132,7 +132,7 @@ function App() {
     const USER_ID = await findUserIdAsync (userData.userName); 
     console.log(`User ${userData.userName} had id ${USER_ID}`)
 
-    const response = await fetch(`http://localhost:5198/api/UserData/${USER_ID}`, {
+    const response = await fetch(`https://hackdaybackend.azurewebsites.net/api/UserData/${USER_ID}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
