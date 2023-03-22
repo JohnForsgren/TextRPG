@@ -1,4 +1,4 @@
-import { DecisionButtonProps, UserData } from "./Interfaces";
+import { DecisionButtonProps } from "./Interfaces";
 
 export const DecisionButton = (props: DecisionButtonProps) => {
 

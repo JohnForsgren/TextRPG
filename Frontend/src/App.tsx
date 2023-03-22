@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Game } from './Components/Game';
 import { UserData } from './Components/Interfaces';
 import { Login } from './Components/Login';
 import './Styles/Style.css';
 
 function App() {
-
-
   // ==== STATES ==== 
-  const [ userData, setUserData ] = useState<UserData[]>() // Variable that contains all users from the database. 
-  const [ currentUser, setCurrentUser ] = useState<UserData>() 
+  // const [ userData, setUserData ] = useState<UserData[]>(); // Variable that contains all users from the database. 
+  const [ currentUser, setCurrentUser ] = useState<UserData>();  
   const [hasLoggedIn, setHasLoggedIn] = useState(false);
+ 
 
-  useEffect(()  => {
-      fetch("http://localhost:5198/api/UserData") // Currently fetches ALL DATA -> This is not best practice, but works for this project. 
-        .then(data => data.json()) // Converts to json
-        .then(data => setUserData(data)) // Stores in the useState "userData". 
-  }, []);
+  // useEffect(()  => {
+  //     fetch("http://localhost:5198/api/UserData") // Currently fetches ALL DATA -> This is not best practice, but works for this project. 
+  //       .then(data => data.json()) // Converts to json
+  //       .then(data => setUserData(data)) // Stores in the useState "userData". 
+  // }, []);
 
 
 

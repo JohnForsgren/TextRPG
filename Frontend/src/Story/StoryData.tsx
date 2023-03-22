@@ -48,23 +48,23 @@ PROBLEM: Current code can't update the UserData. TODO:
 
 */
 
-type StoryData = { // Includes the MODIFICATIONS for the character stats 
-  strength?: number, 
-  wisdom?: number,
-  coins?: number,
-}
+// type StoryData = { // Includes the MODIFICATIONS for the character stats 
+//   strength?: number, 
+//   wisdom?: number,
+//   coins?: number,
+// }
 
-export const prompts_attempt = {
-  "01": {
-    story: "You enter the tavern and order a drink.",
-    storyData: {
-      strength: 0,
-      wisdom: 0,
-      coins: -4,
-    },
-  },
+// export const prompts_attempt = {
+//   "01": {
+//     story: "You enter the tavern and order a drink.",
+//     storyData: {
+//       strength: 0,
+//       wisdom: 0,
+//       coins: -4,
+//     },
+//   },
 
-}
+// }
 
 
 
