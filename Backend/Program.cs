@@ -8,7 +8,7 @@ builder.Services.AddDbContext<UserDataContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle  X 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle  XX 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
