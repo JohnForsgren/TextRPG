@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<UserDataContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UserDataContext") ?? throw new InvalidOperationException("Connection string 'UserDataContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TextRPGKEY") ?? throw new InvalidOperationException("Connection string 'UserDataContext' not found.")));
 
 
 // Add services to the container.
