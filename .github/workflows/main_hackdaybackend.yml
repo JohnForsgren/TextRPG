@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - backend/**
-      - .github/workflows/main_mychessdbapi.yml
+      - .github/workflows/main_hackdaybackend.yml
   workflow_dispatch:
 
 jobs:
